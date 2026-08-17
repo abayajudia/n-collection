@@ -34,7 +34,6 @@
             transition: opacity 0.5s ease;
         }
 
-        /* شكل الدائرة الدوارة */
         .spinner {
             width: 50px;
             height: 50px;
@@ -50,7 +49,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* اسم البراند تحت الدائرة */
+      
         .brand-loading {
             font-size: 20px;
             font-weight: bold;
@@ -67,7 +66,7 @@
 </head>
 <body>
 
-    <!-- شاشة التحميل -->
+   
     <div id="loader">
         <div class="spinner"></div>
         <div class="brand-loading">abayajudia</div>
@@ -82,7 +81,7 @@
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
-            }, 500); // تختفي بسلاسة بعد نصف ثانية من اكتمال التحميل
+            }, 500);
         }
     </script>
 
