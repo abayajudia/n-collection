@@ -11,6 +11,7 @@
     <meta property="og:type" content="website">
     
     <style>
+        /* إغلاق التمرير تماماً وثبات الشاشة الأساسية */
         html, body {
             margin: 0;
             padding: 0;
@@ -58,32 +59,44 @@
             letter-spacing: 1px;
         }
 
+        /* حاوية الـ iframe لمنع التكرار والتشوه في سناب شات */
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* تثبيت الـ iframe وإجبار محرك سناب شات على عرضه ككتلة واحدة متناسقة */
         iframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             border: none;
+            display: block;
             background: #ffffff;
         }
     </style>
 
+    <!-- سكربت ذكي لمعالجة مقاسات سناب شات ديناميكياً إذا لزم الأمر -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var ua = navigator.userAgent || navigator.vendor || window.opera;
             if (ua.indexOf('Snapchat') !== -1) {
+                // تعديل تكتيكي خاص بسناب شات لمنع ازدواجية الـ DOM
                 var style = document.createElement('style');
                 style.innerHTML = `
-                    html, body {
-                        position: relative !important;
-                        height: 100% !important;
-                        overflow: auto !important;
+                    .iframe-container {
+                        height: 100vh !important;
+                        position: fixed !important;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
                     }
                     iframe {
-                        position: absolute !important;
-                        height: 1000px !important; /* طول افتراضي لمنع الانكماش والازدواجية */
-                        min-height: 100% !important;
+                        width: 100% !important;
+                        height: 100% !important;
                     }
                 `;
                 document.head.appendChild(style);
@@ -98,13 +111,16 @@
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <iframe 
-        id="contentFrame"
-        src="https://dodge-bidder-watching-television.trycloudflare.com" 
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-presentation"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        onload="hideLoader()">
-    </iframe>
+    <!-- حاوية الإطار المحمية -->
+    <div class="iframe-container">
+        <iframe 
+            id="contentFrame"
+            src="https://dodge-bidder-watching-television.trycloudflare.com" 
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-presentation"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            onload="hideLoader()">
+        </iframe>
+    </div>
 
     <script>
         function hideLoader() {
