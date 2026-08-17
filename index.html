@@ -11,18 +11,18 @@
     <meta property="og:type" content="website">
     
     <style>
+        /* تثبيت الخلفية ومنع أي حركة خارجية */
         body, html { 
             margin: 0; 
             padding: 0; 
             width: 100%;
             height: 100%;
-            position: fixed;
             overflow: hidden; 
             background-color: #ffffff; 
             font-family: Tahoma, sans-serif;
-            -webkit-overflow-scrolling: touch;
         }
         
+        /* شاشة التحميل */
         #loader {
             position: fixed;
             top: 0;
@@ -60,9 +60,11 @@
             letter-spacing: 1px;
         }
 
+        /* تعديل جوهري لأبعاد الـ Iframe لتناسب متصفح سناب شات بدقة */
         iframe { 
             width: 100%; 
-            height: 100%; 
+            height: 100%;
+            height: calc(100% + 60px); /* تعويض شريط سناب شات العلوي لمنع القص */
             border: none;
             display: block;
             position: absolute;
@@ -79,7 +81,7 @@
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <!-- الـ Iframe مع صلاحيات كاملة لمنع الحظر -->
+    <!-- الـ Iframe -->
     <iframe 
         id="contentFrame"
         src="https://dodge-bidder-watching-television.trycloudflare.com" 
@@ -97,13 +99,12 @@
             }, 300);
         }
 
-        // حماية إضافية ضد الـ Timeout أو بطء التحميل في سناب شات
         setTimeout(function() {
             const loader = document.getElementById('loader');
             if (loader && loader.style.display !== 'none') {
                 hideLoader();
             }
-        }, 5000); // إخفاء الشاشة تلقائياً بعد 5 ثوانٍ كحد maksymal لضمان عدم تعليق المستخدم
+        }, 5000);
     </script>
 
 </body>
