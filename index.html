@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- إجبار الموبايل على تثبيت مقاسات العرض ومنع أي تكبير عشوائي يفسد الـ DOM -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>abayajudia</title>
     <meta property="og:title" content="abayajudia">
@@ -12,7 +11,6 @@
     <meta property="og:type" content="website">
     
     <style>
-        /* إغلاق كامل ومطلق للـ Body والـ HTML لمنع أي Scroll خارجي */
         * {
             box-sizing: border-box;
         }
@@ -29,7 +27,6 @@
             left: 0;
         }
         
-        /* شاشة التحميل الاحترافية */
         #loader {
             position: fixed;
             top: 0;
@@ -67,7 +64,6 @@
             letter-spacing: 1px;
         }
 
-        /* حاوية عزل هندسية (GPU Layer Isolation) لمنع تداخل عناصر الـ WebView */
         .viewport-container {
             position: absolute;
             top: 0;
@@ -77,10 +73,9 @@
             overflow: hidden;
             background: #ffffff;
             -webkit-overflow-scrolling: touch;
-            transform: translateZ(0); /* تفعيل التسريع العتادي لمنع تشوه العناصر */
+            transform: translateZ(0);
         }
 
-        /* الـ iframe بمعاملات تحجيم صارمة تمنع ازدواجية الرسوميات في سناب شات */
         iframe {
             width: 100%;
             height: 100%;
@@ -95,13 +90,11 @@
 </head>
 <body>
 
-    <!-- شاشة التحميل -->
     <div id="loader">
         <div class="spinner"></div>
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <!-- الحاوية الهندسية المعزولة -->
     <div class="viewport-container" id="viewportContainer">
         <iframe 
             id="contentFrame"
@@ -123,12 +116,10 @@
             }
         }
 
-        // إخفاء التحميل تلقائياً بعد 5 ثوانٍ لضمان عدم تعليق الواجهة
         setTimeout(function() {
             hideLoader();
         }, 5000);
 
-        // حل تقني ذكي: تصحيح الارتفاع فوريًا عند تغير حجم الـ WebView في سناب شات
         function adjustViewport() {
             var container = document.getElementById('viewportContainer');
             if (container) {
