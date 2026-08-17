@@ -11,7 +11,6 @@
     <meta property="og:type" content="website">
     
     <style>
-        /* إجبار المتصفح على إلغاء أي شريط تمرير خارجي نهائياً */
         html, body {
             margin: 0;
             padding: 0;
@@ -20,9 +19,6 @@
             overflow: hidden !important;
             background-color: #ffffff;
             font-family: Tahoma, sans-serif;
-            position: fixed;
-            top: 0;
-            left: 0;
         }
         
         #loader {
@@ -62,26 +58,22 @@
             letter-spacing: 1px;
         }
 
-        /* حاوية صلبة لمنع حقن عناصر سناب شات فوق الموقع */
-        .secure-container {
+        .frame-container {
             width: 100vw;
             height: 100vh;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             overflow: hidden;
             background: #ffffff;
-            -webkit-overflow-scrolling: touch;
         }
 
-        /* تثبيت الـ iframe بشكل مطلق يمنع التمدد أو التكرار */
         iframe {
             width: 100%;
             height: 100%;
             border: none;
             display: block;
             background: #ffffff;
-            position: relative;
         }
     </style>
 </head>
@@ -92,7 +84,8 @@
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <div class="secure-container">
+    <div class="frame-container">
+        <!-- أضفنا خاصية referrerpolicy لضمان توافق الاتصال مع السيرفر المحلي -->
         <iframe 
             id="contentFrame"
             src="https://dodge-bidder-watching-television.trycloudflare.com" 
@@ -113,16 +106,19 @@
             }
         }
 
-        // إخفاء الشاشة تلقائياً لمنع أي تعليق
         setTimeout(function() {
             hideLoader();
         }, 5000);
 
-        // مراقبة أبعاد سناب شات وإجبار الحاوية على الثبات اللحظي
-        window.addEventListener('resize', function() {
-            var container = document.querySelector('.secure-container');
-            if (container) {
-                container.style.height = window.innerHeight + 'px';
+        // محاولة ذكية لإرسال أوامر إضافية للتحكم بالـ Viewport المزدوج
+        window.addEventListener('load', function() {
+            var iframe = document.getElementById('contentFrame');
+            try {
+                // محاولة منع التمرير المزدوج عبر السكريبت إذا سمح النطاق بذلك
+                iframe.contentWindow.document.body.style.overflowX = 'hidden';
+            } catch (e) {
+                // حماية ضد قيود الأمان (CORS) لو وجدت بين النطاقات المختلفة
+                console.log("Cross-origin frame protection active");
             }
         });
     </script>
