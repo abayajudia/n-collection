@@ -11,24 +11,22 @@
     <meta property="og:type" content="website">
     
     <style>
-        /* تثبيت الخلفية ومنع أي حركة خارجية */
         body, html { 
             margin: 0; 
             padding: 0; 
             width: 100%;
-            height: 100%;
+            height: 100vh;
             overflow: hidden; 
             background-color: #ffffff; 
             font-family: Tahoma, sans-serif;
         }
         
-        /* شاشة التحميل */
         #loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -60,17 +58,14 @@
             letter-spacing: 1px;
         }
 
-        /* تعديل جوهري لأبعاد الـ Iframe لتناسب متصفح سناب شات بدقة */
         iframe { 
             width: 100%; 
-            height: 100%;
-            height: calc(100% + 60px); /* تعويض شريط سناب شات العلوي لمنع القص */
+            height: 100vh; 
             border: none;
             display: block;
             position: absolute;
             top: 0;
             left: 0;
-            transform: translateZ(0);
         }
     </style>
 </head>
@@ -104,7 +99,7 @@
             if (loader && loader.style.display !== 'none') {
                 hideLoader();
             }
-        }, 5000);
+        }, 2000);
     </script>
 
 </body>
