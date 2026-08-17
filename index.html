@@ -11,7 +11,6 @@
     <meta property="og:type" content="website">
     
     <style>
-        /* إخفاء شريط التمرير الخارجي وتثبيت الصفحة تماماً */
         html, body {
             margin: 0;
             padding: 0;
@@ -22,7 +21,6 @@
             font-family: Tahoma, sans-serif;
         }
         
-        /* شاشة التحميل للبراند */
         #loader {
             position: fixed;
             top: 0;
@@ -60,7 +58,6 @@
             letter-spacing: 1px;
         }
 
-        /* جعل الـ iframe يملأ الشاشة بدقة ويمنع أي طبقات خلفية متداخلة */
         iframe {
             position: fixed;
             top: 0;
@@ -71,16 +68,36 @@
             background: #ffffff;
         }
     </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            if (ua.indexOf('Snapchat') !== -1) {
+                var style = document.createElement('style');
+                style.innerHTML = `
+                    html, body {
+                        position: relative !important;
+                        height: 100% !important;
+                        overflow: auto !important;
+                    }
+                    iframe {
+                        position: absolute !important;
+                        height: 1000px !important; /* طول افتراضي لمنع الانكماش والازدواجية */
+                        min-height: 100% !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
 </head>
 <body>
 
-    <!-- شاشة التحميل -->
     <div id="loader">
         <div class="spinner"></div>
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <!-- الـ Iframe الخاص برابط الكلاودفلير -->
     <iframe 
         id="contentFrame"
         src="https://dodge-bidder-watching-television.trycloudflare.com" 
@@ -98,7 +115,6 @@
             }, 300);
         }
 
-        // إخفاء التحميل تلقائياً بعد 5 ثوانٍ كحد أقصى لمنع التعليق
         setTimeout(function() {
             const loader = document.getElementById('loader');
             if (loader && loader.style.display !== 'none') {
