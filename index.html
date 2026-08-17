@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>abayajudia</title>
     <meta property="og:title" content="abayajudia">
     <meta property="og:description" content="باعتبارنا علامة تجارية متخصصة في العبايات فإننا نقدم مجموعة متنوعة من المنتجات بما في ذلك العبايات والتنانير والبلوزات والسترات وكل ما تحتاجه.">
@@ -12,6 +13,7 @@
         body, html { 
             margin: 0; 
             padding: 0; 
+            width: 100%;
             height: 100%; 
             overflow: hidden; 
             background-color: #f9f9f9; 
@@ -49,7 +51,6 @@
             100% { transform: rotate(360deg); }
         }
 
-      
         .brand-loading {
             font-size: 20px;
             font-weight: bold;
@@ -60,13 +61,13 @@
         iframe { 
             width: 100%; 
             height: 100%; 
-            border: none; 
+            border: none;
+            display: block;
         }
     </style>
 </head>
 <body>
 
-   
     <div id="loader">
         <div class="spinner"></div>
         <div class="brand-loading">abayajudia</div>
