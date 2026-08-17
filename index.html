@@ -11,22 +11,25 @@
     <meta property="og:type" content="website">
     
     <style>
-        body, html { 
-            margin: 0; 
-            padding: 0; 
+        /* إيقاف أي تفاعل للـ body لمنع الازدواجية */
+        html, body {
+            margin: 0;
+            padding: 0;
             width: 100%;
-            height: 100vh;
-            overflow: hidden; 
-            background-color: #ffffff; 
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
             font-family: Tahoma, sans-serif;
+            position: fixed;
         }
         
+        /* شاشة التحميل */
         #loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -58,14 +61,15 @@
             letter-spacing: 1px;
         }
 
-        iframe { 
-            width: 100%; 
-            height: 100vh; 
-            border: none;
-            display: block;
+        /* تحجيم الـ iframe بدقة مطلقة ومنع أي تداخل بصري */
+        iframe {
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #ffffff;
         }
     </style>
 </head>
@@ -99,7 +103,7 @@
             if (loader && loader.style.display !== 'none') {
                 hideLoader();
             }
-        }, 2000);
+        }, 5000);
     </script>
 
 </body>
