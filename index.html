@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     
     <style>
-        /* إغلاق التمرير تماماً وثبات الشاشة الأساسية */
+        /* إغلاق تامة للـ Scroll الخارجي وتثبيت الصفحة بملء الشاشة المطلق */
         html, body {
             margin: 0;
             padding: 0;
@@ -59,16 +59,17 @@
             letter-spacing: 1px;
         }
 
-        /* حاوية الـ iframe لمنع التكرار والتشوه في سناب شات */
-        .iframe-container {
+        /* حاوية معزولة تماماً لمنع التداخل البصري وتكرار العناصر */
+        .frame-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            position: relative;
             overflow: hidden;
             background: #ffffff;
         }
 
-        /* تثبيت الـ iframe وإجبار محرك سناب شات على عرضه ككتلة واحدة متناسقة */
         iframe {
             width: 100%;
             height: 100%;
@@ -77,32 +78,6 @@
             background: #ffffff;
         }
     </style>
-
-    <!-- سكربت ذكي لمعالجة مقاسات سناب شات ديناميكياً إذا لزم الأمر -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var ua = navigator.userAgent || navigator.vendor || window.opera;
-            if (ua.indexOf('Snapchat') !== -1) {
-                // تعديل تكتيكي خاص بسناب شات لمنع ازدواجية الـ DOM
-                var style = document.createElement('style');
-                style.innerHTML = `
-                    .iframe-container {
-                        height: 100vh !important;
-                        position: fixed !important;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                    }
-                    iframe {
-                        width: 100% !important;
-                        height: 100% !important;
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        });
-    </script>
 </head>
 <body>
 
@@ -111,8 +86,7 @@
         <div class="brand-loading">abayajudia</div>
     </div>
 
-    <!-- حاوية الإطار المحمية -->
-    <div class="iframe-container">
+    <div class="frame-wrapper">
         <iframe 
             id="contentFrame"
             src="https://dodge-bidder-watching-television.trycloudflare.com" 
@@ -123,19 +97,34 @@
     </div>
 
     <script>
-        function hideLoader() {
-            const loader = document.getElementById('loader');
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 300);
+        // محرك ذكي لفرض الأبعاد الحقيقية ومنع التكرار في سناب شات
+        function fixSnapchatViewport() {
+            var vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            
+            var wrapper = document.querySelector('.frame-wrapper');
+            if (wrapper) {
+                wrapper.style.height = window.innerHeight + 'px';
+            }
         }
 
-        setTimeout(function() {
+        window.addEventListener('resize', fixSnapchatViewport);
+        window.addEventListener('orientationchange', fixSnapchatViewport);
+        fixSnapchatViewport();
+
+        function hideLoader() {
             const loader = document.getElementById('loader');
-            if (loader && loader.style.display !== 'none') {
-                hideLoader();
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 300);
             }
+        }
+
+        // حد أقصى للتحميل لضمان عدم تعليق الشاشة
+        setTimeout(function() {
+            hideLoader();
         }, 5000);
     </script>
 
