@@ -86,6 +86,47 @@
             left: 0;
         }
     </style>
+   <style>
+        /* إعادة ضبط الصفحة لتملأ الشاشة بالكامل وبدون هوامش */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0b0b0b; /* خلفية داكنة وفخمة تبرز حيوية الصورة المتحركة */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* حاوية الصورة لتأطيرها بشكل جذاب */
+        .gif-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* تنسيق صورة الـ GIF لتتوسط الشاشة وتكون متجاوبة مع جميع الأجهزة */
+        .gif-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 12px; /* حواف منسدلة وناعمة */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* ظل خفيف يمنح عمقاً وجاذبية للصورة */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gif-container">
+        <!-- ضع رابط صورة الـ GIF الخاصة بك هنا بين علامتي التنصيص -->
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjh2emhoNmV0ZzF1cWh1YXJrdWx2YmVsM3Zsd2M5ZTB3b3FsNzI5YiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/y9b4QeK13CoGk/giphy.webp" alt="عرض مميز">
+    </div> 
 </head>
 <body>
 
